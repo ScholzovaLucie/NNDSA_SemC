@@ -9,30 +9,26 @@ namespace SemC
 {
     class Buffer
     {
-        private List<byte> items;
+        private string identifire;
+        private List<Blok> items;
         private int capacity;
 
         // Konstruktor pro inicializaci kapacity bufferu
-        public Buffer(int capacity)
+        public Buffer(int capacity, string identifire)
         {
             this.capacity = capacity;
-            items = new List<byte>(capacity);
+            items = new List<Blok>(capacity);
+            this.identifire = identifire;
         }
 
         // Metoda pro přidání prvku do bufferu
-        public void Add(byte item)
+        public void Add(Blok item)
         {
             if (items.Count >= capacity)
                 throw new InvalidOperationException("Buffer je plný.");
             items.Add(item);
         }
 
-        public void AddRange(byte[] data)
-        {
-            if (items.Count + data.Length > capacity)
-                throw new InvalidOperationException("Přidání dat překročí kapacitu bufferu.");
-            items.AddRange(data);
-        }
 
         // Metoda pro vyčištění bufferu
         public void Clear()
@@ -48,12 +44,22 @@ namespace SemC
             return items.Count == capacity;
         }
 
-        // Metoda pro získání obsahu bufferu jako pole
-        public byte[] ToArray()
+        public byte[] ConvertListToArray()
         {
-            return items.ToArray();
+            List<byte> result = new List<byte>();
+
+            foreach (Blok byteArray in items)
+            {
+                result.AddRange(byteArray.ConvertListToArray());
+            }
+
+            return result.ToArray();
         }
 
+        public string ToString()
+        {
+            return identifire;
+        }
 
     }
 

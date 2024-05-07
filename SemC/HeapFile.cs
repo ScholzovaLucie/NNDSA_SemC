@@ -1,4 +1,4 @@
-﻿using SemB.Generator;
+﻿using SemC.Generator;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,10 +14,9 @@ namespace SemC
         private string filePath;
         private int bufferSize;
         private int totalRecords;
-        private int blockSize = 100;
-        private IDataGenerator<byte> generator;
+        private IDataGenerator<byte[]> generator;
 
-        public HeapFile(string filePath, int bufferSize, int totalRecords, IDataGenerator<byte> dataGenerator)
+        public HeapFile(string filePath, int bufferSize, int totalRecords, IDataGenerator<byte[]> dataGenerator)
         {
             this.filePath = filePath;
             this.bufferSize = bufferSize;
@@ -27,32 +26,35 @@ namespace SemC
 
         public async Task WriteRecordsAsync(int bufferCount)
         {
-            using var fs = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None, bufferSize, true);
             Queue<Buffer> buffers = new Queue<Buffer>();
             for (int i = 0; i < bufferCount; i++)
             {
-                buffers.Enqueue(new Buffer(bufferSize));
+                buffers.Enqueue(new Buffer(bufferSize, "buffer" + i));
             }
 
-            int totalDataSize = 0;
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
             for (int i = 0; i < totalRecords; i++)
             {
-                byte[] data = Encoding.UTF8.GetBytes($"Record {i}\n");
                 Buffer currentBuffer = buffers.Dequeue();
                 buffers.Enqueue(currentBuffer);
 
-                if (!currentBuffer.isFull())
+                while (!currentBuffer.isFull())
                 {
-                    currentBuffer.Add(generator.Next());
+                    Blok blok = new Blok(i);
+
+                    for (int j = 0; j < blok.GetSize(); j++)
+                    {
+                        blok.Add(generator.Next());
+
+                    }
+                    currentBuffer.Add(blok);
                 }
 
-                byte[] toWrite = currentBuffer.ToArray();
-                await fs.WriteAsync(toWrite, 0, toWrite.Length);
-                totalDataSize += toWrite.Length;
-                currentBuffer.Clear();  
+                Console.WriteLine(currentBuffer.ToString());
+
+                await Write(currentBuffer);
             }
 
             stopwatch.Stop();
@@ -60,16 +62,23 @@ namespace SemC
 
             foreach (var buffer in buffers)
             {
-                await FlushBufferAsync(buffer, fs);
+                await FlushBufferAsync(buffer);
             }
         }
 
-        private async Task FlushBufferAsync(Buffer buffer, FileStream fs)
+        private async Task Write(Buffer currentBuffer)
+        {
+            using var fs = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None, bufferSize, true);
+
+            byte[] toWrite = currentBuffer.ConvertListToArray();
+            await fs.WriteAsync(toWrite, 0, toWrite.Length);
+            currentBuffer.Clear();
+        }
+
+        private async Task FlushBufferAsync(Buffer buffer)
         {
             if (buffer.Count > 0)
             {
-                byte[] data = buffer.ToArray();
-                await fs.WriteAsync(data, 0, data.Length);
                 buffer.Clear();
             }
         }
@@ -77,10 +86,12 @@ namespace SemC
         public async Task ReadRecordsAsync(int bufferCount)
         {
             using var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize, true);
+
+
             Queue<Buffer> buffers = new Queue<Buffer>();
             for (int i = 0; i < bufferCount; i++)
             {
-                buffers.Enqueue(new Buffer(bufferSize));
+                buffers.Enqueue(new Buffer(bufferSize, "buffer" + i));
             }
 
             Stopwatch stopwatch = new Stopwatch();
@@ -103,5 +114,7 @@ namespace SemC
             stopwatch.Stop();
             Console.WriteLine($"Načtení trvání: {stopwatch.ElapsedMilliseconds} ms");
         }
+
+        
     }
 }

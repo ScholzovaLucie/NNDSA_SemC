@@ -4,7 +4,7 @@ using System.Linq;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
-using SemB.Generator;
+using SemC.Generator;
 
 namespace SemC
 {
@@ -12,11 +12,11 @@ namespace SemC
     {
         static async Task Main(string[] args)
         {
-            int bufferSize = 10_000_000;
-            int dataSize = 10_000_000;
+            int bufferSize = 1_000_000;
+            int dataSize = 1_000_000;
             int experiment_count = 3;
             string filePath = "heapfile.bin";
-            var heapFile = new HeapFile(filePath, bufferSize, dataSize, new ByteDataGenerator());  // buffer size 1024 bytes, total 100 records
+            var heapFile = new HeapFile(filePath, bufferSize, dataSize, new ByteDataGenerator());
 
             for (int i = 0; i < experiment_count; i++)
             {

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SemB.Generator
+namespace SemC.Generator
 {
-    public class ByteDataGenerator: IDataGenerator<byte>
+    public class ByteDataGenerator : IDataGenerator<byte[]>
     {
         Random rng = new Random();
         public ByteDataGenerator()
@@ -14,9 +14,9 @@ namespace SemB.Generator
 
         }
 
-        public byte Next()
+        public byte[] Next()
         {
-            return (byte)rng.Next();
+            return Encoding.ASCII.GetBytes("data: " + rng.Next().ToString());
         }
     }
 }
