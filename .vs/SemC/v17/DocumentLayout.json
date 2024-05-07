@@ -1,0 +1,96 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\lucka\\OneDrive - Univerzita Pardubice\\UPCE\\ING 1.rocnik 2.semestr\\NNDSA - Struktury\\semestralka\\SemC\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3A428508-B8D4-49D3-9669-F4A9BC025644}|SemC\\SemC.csproj|C:\\Users\\lucka\\OneDrive - Univerzita Pardubice\\UPCE\\ING 1.rocnik 2.semestr\\NNDSA - Struktury\\semestralka\\SemC\\semc\\buffer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A428508-B8D4-49D3-9669-F4A9BC025644}|SemC\\SemC.csproj|solutionrelative:semc\\buffer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A428508-B8D4-49D3-9669-F4A9BC025644}|SemC\\SemC.csproj|C:\\Users\\lucka\\OneDrive - Univerzita Pardubice\\UPCE\\ING 1.rocnik 2.semestr\\NNDSA - Struktury\\semestralka\\SemC\\semc\\heapfile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A428508-B8D4-49D3-9669-F4A9BC025644}|SemC\\SemC.csproj|solutionrelative:semc\\heapfile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A428508-B8D4-49D3-9669-F4A9BC025644}|SemC\\SemC.csproj|c:\\users\\lucka\\onedrive - univerzita pardubice\\upce\\ing 1.rocnik 2.semestr\\nndsa - struktury\\semestralka\\semc\\semc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A428508-B8D4-49D3-9669-F4A9BC025644}|SemC\\SemC.csproj|solutionrelative:semc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A428508-B8D4-49D3-9669-F4A9BC025644}|SemC\\SemC.csproj|c:\\users\\lucka\\onedrive - univerzita pardubice\\upce\\ing 1.rocnik 2.semestr\\nndsa - struktury\\semestralka\\semc\\semc\\semc.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{3A428508-B8D4-49D3-9669-F4A9BC025644}|SemC\\SemC.csproj|solutionrelative:semc\\semc.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SemC",
+              "DocumentMoniker": "C:\\Users\\lucka\\OneDrive - Univerzita Pardubice\\UPCE\\ING 1.rocnik 2.semestr\\NNDSA - Struktury\\semestralka\\SemC\\SemC\\SemC.csproj",
+              "RelativeDocumentMoniker": "SemC\\SemC.csproj",
+              "ToolTip": "C:\\Users\\lucka\\OneDrive - Univerzita Pardubice\\UPCE\\ING 1.rocnik 2.semestr\\NNDSA - Struktury\\semestralka\\SemC\\SemC\\SemC.csproj",
+              "RelativeToolTip": "SemC\\SemC.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-05-06T13:43:09.525Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\lucka\\OneDrive - Univerzita Pardubice\\UPCE\\ING 1.rocnik 2.semestr\\NNDSA - Struktury\\semestralka\\SemC\\SemC\\Program.cs",
+              "RelativeDocumentMoniker": "SemC\\Program.cs",
+              "ToolTip": "C:\\Users\\lucka\\OneDrive - Univerzita Pardubice\\UPCE\\ING 1.rocnik 2.semestr\\NNDSA - Struktury\\semestralka\\SemC\\SemC\\Program.cs",
+              "RelativeToolTip": "SemC\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-06T13:43:33.265Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Buffer.cs",
+              "DocumentMoniker": "C:\\Users\\lucka\\OneDrive - Univerzita Pardubice\\UPCE\\ING 1.rocnik 2.semestr\\NNDSA - Struktury\\semestralka\\SemC\\SemC\\Buffer.cs",
+              "RelativeDocumentMoniker": "SemC\\Buffer.cs",
+              "ToolTip": "C:\\Users\\lucka\\OneDrive - Univerzita Pardubice\\UPCE\\ING 1.rocnik 2.semestr\\NNDSA - Struktury\\semestralka\\SemC\\SemC\\Buffer.cs",
+              "RelativeToolTip": "SemC\\Buffer.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T06:28:37.762Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "HeapFile.cs",
+              "DocumentMoniker": "C:\\Users\\lucka\\OneDrive - Univerzita Pardubice\\UPCE\\ING 1.rocnik 2.semestr\\NNDSA - Struktury\\semestralka\\SemC\\SemC\\HeapFile.cs",
+              "RelativeDocumentMoniker": "SemC\\HeapFile.cs",
+              "ToolTip": "C:\\Users\\lucka\\OneDrive - Univerzita Pardubice\\UPCE\\ING 1.rocnik 2.semestr\\NNDSA - Struktury\\semestralka\\SemC\\SemC\\HeapFile.cs",
+              "RelativeToolTip": "SemC\\HeapFile.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAFsAAABWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T06:28:03.976Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

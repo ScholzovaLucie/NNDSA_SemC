@@ -1,0 +1,36 @@
+C:\Users\lucka\OneDrive - Univerzita Pardubice\UPCE\ING 1.rocnik 2.semestr\NNDSA - Struktury\semestralka\SemC\SemC\bin\Debug\net6.0\SemC.exe
+C:\Users\lucka\OneDrive - Univerzita Pardubice\UPCE\ING 1.rocnik 2.semestr\NNDSA - Struktury\semestralka\SemC\SemC\bin\Debug\net6.0\SemC.deps.json
+C:\Users\lucka\OneDrive - Univerzita Pardubice\UPCE\ING 1.rocnik 2.semestr\NNDSA - Struktury\semestralka\SemC\SemC\bin\Debug\net6.0\SemC.runtimeconfig.json
+C:\Users\lucka\OneDrive - Univerzita Pardubice\UPCE\ING 1.rocnik 2.semestr\NNDSA - Struktury\semestralka\SemC\SemC\bin\Debug\net6.0\SemC.dll
+C:\Users\lucka\OneDrive - Univerzita Pardubice\UPCE\ING 1.rocnik 2.semestr\NNDSA - Struktury\semestralka\SemC\SemC\bin\Debug\net6.0\SemC.pdb
+C:\Users\lucka\OneDrive - Univerzita Pardubice\UPCE\ING 1.rocnik 2.semestr\NNDSA - Struktury\semestralka\SemC\SemC\obj\Debug\net6.0\SemC.csproj.AssemblyReference.cache
+C:\Users\lucka\OneDrive - Univerzita Pardubice\UPCE\ING 1.rocnik 2.semestr\NNDSA - Struktury\semestralka\SemC\SemC\obj\Debug\net6.0\SemC.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lucka\OneDrive - Univerzita Pardubice\UPCE\ING 1.rocnik 2.semestr\NNDSA - Struktury\semestralka\SemC\SemC\obj\Debug\net6.0\SemC.AssemblyInfoInputs.cache
+C:\Users\lucka\OneDrive - Univerzita Pardubice\UPCE\ING 1.rocnik 2.semestr\NNDSA - Struktury\semestralka\SemC\SemC\obj\Debug\net6.0\SemC.AssemblyInfo.cs
+C:\Users\lucka\OneDrive - Univerzita Pardubice\UPCE\ING 1.rocnik 2.semestr\NNDSA - Struktury\semestralka\SemC\SemC\obj\Debug\net6.0\SemC.csproj.CoreCompileInputs.cache
+C:\Users\lucka\OneDrive - Univerzita Pardubice\UPCE\ING 1.rocnik 2.semestr\NNDSA - Struktury\semestralka\SemC\SemC\obj\Debug\net6.0\SemC.dll
+C:\Users\lucka\OneDrive - Univerzita Pardubice\UPCE\ING 1.rocnik 2.semestr\NNDSA - Struktury\semestralka\SemC\SemC\obj\Debug\net6.0\refint\SemC.dll
+C:\Users\lucka\OneDrive - Univerzita Pardubice\UPCE\ING 1.rocnik 2.semestr\NNDSA - Struktury\semestralka\SemC\SemC\obj\Debug\net6.0\SemC.pdb
+C:\Users\lucka\OneDrive - Univerzita Pardubice\UPCE\ING 1.rocnik 2.semestr\NNDSA - Struktury\semestralka\SemC\SemC\obj\Debug\net6.0\SemC.genruntimeconfig.cache
+C:\Users\lucka\OneDrive - Univerzita Pardubice\UPCE\ING 1.rocnik 2.semestr\NNDSA - Struktury\semestralka\SemC\SemC\obj\Debug\net6.0\ref\SemC.dll
+C:\Users\lucka\OneDrive - Univerzita Pardubice\UPCE\ING 1.rocnik 2.semestr\NNDSA - Struktury\semestralka\SemC\SemC\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\lucka\OneDrive - Univerzita Pardubice\UPCE\ING 1.rocnik 2.semestr\NNDSA - Struktury\semestralka\SemC\SemC\bin\Debug\net6.0\System.Linq.Async.dll
+C:\Users\lucka\OneDrive - Univerzita Pardubice\UPCE\ING 1.rocnik 2.semestr\NNDSA - Struktury\semestralka\SemC\SemC\obj\Debug\net6.0\SemC.csproj.CopyComplete
+C:\Users\lucka\Desktop\NNDSA\SEMC\SemC\bin\Debug\net6.0\SemC.exe
+C:\Users\lucka\Desktop\NNDSA\SEMC\SemC\bin\Debug\net6.0\SemC.deps.json
+C:\Users\lucka\Desktop\NNDSA\SEMC\SemC\bin\Debug\net6.0\SemC.runtimeconfig.json
+C:\Users\lucka\Desktop\NNDSA\SEMC\SemC\bin\Debug\net6.0\SemC.dll
+C:\Users\lucka\Desktop\NNDSA\SEMC\SemC\bin\Debug\net6.0\SemC.pdb
+C:\Users\lucka\Desktop\NNDSA\SEMC\SemC\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\lucka\Desktop\NNDSA\SEMC\SemC\bin\Debug\net6.0\System.Linq.Async.dll
+C:\Users\lucka\Desktop\NNDSA\SEMC\SemC\obj\Debug\net6.0\SemC.csproj.AssemblyReference.cache
+C:\Users\lucka\Desktop\NNDSA\SEMC\SemC\obj\Debug\net6.0\SemC.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lucka\Desktop\NNDSA\SEMC\SemC\obj\Debug\net6.0\SemC.AssemblyInfoInputs.cache
+C:\Users\lucka\Desktop\NNDSA\SEMC\SemC\obj\Debug\net6.0\SemC.AssemblyInfo.cs
+C:\Users\lucka\Desktop\NNDSA\SEMC\SemC\obj\Debug\net6.0\SemC.csproj.CoreCompileInputs.cache
+C:\Users\lucka\Desktop\NNDSA\SEMC\SemC\obj\Debug\net6.0\SemC.csproj.CopyComplete
+C:\Users\lucka\Desktop\NNDSA\SEMC\SemC\obj\Debug\net6.0\SemC.dll
+C:\Users\lucka\Desktop\NNDSA\SEMC\SemC\obj\Debug\net6.0\refint\SemC.dll
+C:\Users\lucka\Desktop\NNDSA\SEMC\SemC\obj\Debug\net6.0\SemC.pdb
+C:\Users\lucka\Desktop\NNDSA\SEMC\SemC\obj\Debug\net6.0\SemC.genruntimeconfig.cache
+C:\Users\lucka\Desktop\NNDSA\SEMC\SemC\obj\Debug\net6.0\ref\SemC.dll
