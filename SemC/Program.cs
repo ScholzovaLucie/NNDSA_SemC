@@ -12,7 +12,7 @@ namespace SemC
     {
         static async Task Main(string[] args)
         {
-            int bufferSize = 1_000;
+            int bufferSize = 2_000;
             int dataSize = 1_000_000;
 
             string filePath = "heapfile.bin";

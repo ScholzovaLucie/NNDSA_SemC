@@ -11,11 +11,13 @@ namespace SemC
 {
     public class HeapFile
     {
+        // Privátní proměnné pro uložení cesty k souboru, velikosti bufferu, celkového počtu záznamů a generátoru dat
         private string filePath;
         private int bufferSize;
         private int totalRecords;
         private IDataGenerator<byte[]> generator;
 
+        // Konstruktor pro inicializaci třídy HeapFile
         public HeapFile(string filePath, int bufferSize, int totalRecords, IDataGenerator<byte[]> dataGenerator)
         {
             this.filePath = filePath;
@@ -24,17 +26,19 @@ namespace SemC
             this.generator = dataGenerator;
         }
 
+        // Asynchronní metoda pro zápis záznamů s použitím bufferů
         public async Task WriteRecordsAsync(int bufferCount)
         {
             int currentRecord = 0;
             Queue<Buffer> buffers = new Queue<Buffer>();
+            // Inicializace bufferů pro zápis
             for (int i = 0; i < bufferCount; i++)
             {
                 buffers.Enqueue(new Buffer(bufferSize, "buffer" + i));
             }
 
             Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
+            stopwatch.Start(); // Start měření času zápisu
 
             Buffer currentBuffer = buffers.Dequeue();
 
@@ -42,34 +46,35 @@ namespace SemC
             {
                 if (currentBuffer.isFull())
                 {
-                    if(bufferCount > 1)
+                    if (bufferCount > 1)
                         Console.WriteLine(currentBuffer.ToString());
-                    await Write(currentBuffer);
-                    buffers.Enqueue(currentBuffer); // Vracíme buffer do fronty po zápisu
-                    currentBuffer = buffers.Dequeue(); // Získáme nový buffer na práci
-                    currentBuffer.Clear(); // Zajistíme, že buffer je prázdný
+                    await Write(currentBuffer); // Asynchronní zápis plného bufferu
+                    buffers.Enqueue(currentBuffer); // Vrácení bufferu do fronty po zápisu
+                    currentBuffer = buffers.Dequeue(); // Získání nového bufferu
+                    currentBuffer.Clear(); // Vyčištění bufferu pro další použití
                 }
 
                 Blok blok = new Blok(currentRecord);
+                // Přidání dat do bloku
                 for (int j = 0; j < Blok.GetSize(); j++)
                 {
                     blok.Add(generator.Next());
                     currentRecord++;
                 }
-                currentBuffer.Add(blok);
+                currentBuffer.Add(blok); // Přidání bloku do bufferu
             }
 
-            // Zajištění, že poslední buffer je také zapsán
+            // Zajištění zápisu posledního bufferu, pokud není prázdný
             if (!currentBuffer.isEmpty())
             {
                 await Write(currentBuffer);
                 currentBuffer.Clear();
             }
 
-            stopwatch.Stop();
+            stopwatch.Stop(); // Zastavení časovače
             Console.WriteLine($"Zápis trvání: {stopwatch.ElapsedMilliseconds} ms");
 
-            // Flushing buffers if necessary (should be empty if logic is correct)
+            // Vyprázdnění zbývajících bufferů, pokud je to nutné
             foreach (var buffer in buffers)
             {
                 if (!buffer.isEmpty())
@@ -80,15 +85,16 @@ namespace SemC
             }
         }
 
+        // Asynchronní zápis dat z bufferu do souboru
         private async Task Write(Buffer currentBuffer)
         {
             using var fs = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None, bufferSize, true);
-
             byte[] toWrite = currentBuffer.ConvertListToArray();
             await fs.WriteAsync(toWrite, 0, toWrite.Length);
             currentBuffer.Clear();
         }
 
+        // Asynchronní metoda pro čtení záznamů
         public async Task ReadRecordsAsync(int bufferCount)
         {
             Queue<Buffer> buffers = new Queue<Buffer>();
@@ -98,7 +104,7 @@ namespace SemC
             }
 
             Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
+            stopwatch.Start(); // Start měření času čtení
 
             using var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize, true);
             byte[] data = new byte[Blok.GetSize()];
@@ -116,13 +122,13 @@ namespace SemC
 
                 buffers.Enqueue(currentBuffer);
 
-                if (buffers.Peek().IsReady())  
+                if (buffers.Peek().IsReady())
                 {
                     Buffer readyBuffer = buffers.Dequeue();
 
-                    byte[] dataToProcess = readyBuffer.ConvertListToArray(); 
+                    byte[] dataToProcess = readyBuffer.ConvertListToArray();
 
-                    ProcessData(dataToProcess); 
+                    ProcessData(dataToProcess); // Zpracování dat
 
                     readyBuffer.Clear();
 
@@ -130,9 +136,10 @@ namespace SemC
                 }
             }
 
-            stopwatch.Stop();
+            stopwatch.Stop(); // Zastavení časovače
             Console.WriteLine($"Čtení trvání: {stopwatch.ElapsedMilliseconds} ms");
 
+            // Vyprázdnění všech zbývajících bufferů
             foreach (var buffer in buffers)
             {
                 if (buffer.IsReady())
@@ -141,15 +148,13 @@ namespace SemC
                     buffer.Clear();
                 }
             }
-
         }
 
+        // Metoda pro zpracování dat
         private void ProcessData(byte[] data)
         {
             var dataString = BitConverter.ToString(data);
             Console.WriteLine($"Data: {dataString}");
         }
-
-
     }
 }
