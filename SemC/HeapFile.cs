@@ -42,6 +42,8 @@ namespace SemC
             {
                 if (currentBuffer.isFull())
                 {
+                    if(bufferCount > 1)
+                        Console.WriteLine(currentBuffer.ToString());
                     await Write(currentBuffer);
                     buffers.Enqueue(currentBuffer); // Vracíme buffer do fronty po zápisu
                     currentBuffer = buffers.Dequeue(); // Získáme nový buffer na práci
@@ -116,8 +118,7 @@ namespace SemC
 
                 if (buffers.Peek().IsReady())  
                 {
-                    Buffer readyBuffer = buffers.Dequeue(); 
-
+                    Buffer readyBuffer = buffers.Dequeue();
 
                     byte[] dataToProcess = readyBuffer.ConvertListToArray(); 
 
