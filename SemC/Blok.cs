@@ -23,7 +23,7 @@ namespace SemC
             Data.Add(data);
         }
 
-        public int GetSize()
+        public static int GetSize()
         {
             return Size;
         }

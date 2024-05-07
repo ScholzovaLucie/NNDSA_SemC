@@ -4,51 +4,61 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace SemC
 {
     class Buffer
     {
         private string identifire;
-        private List<Blok> items;
+        private List<Blok> blocks;
         private int capacity;
 
         // Konstruktor pro inicializaci kapacity bufferu
         public Buffer(int capacity, string identifire)
         {
             this.capacity = capacity;
-            items = new List<Blok>(capacity);
+            blocks = new List<Blok>(capacity);
             this.identifire = identifire;
         }
 
         // Metoda pro přidání prvku do bufferu
         public void Add(Blok item)
         {
-            if (items.Count >= capacity)
+            if (blocks.Count >= capacity)
                 throw new InvalidOperationException("Buffer je plný.");
-            items.Add(item);
+            blocks.Add(item);
         }
-
+        public bool isEmpty()
+        {
+            return blocks.Count == 0;
+        }
 
         // Metoda pro vyčištění bufferu
         public void Clear()
         {
-            items.Clear();
+            blocks.Clear();
         }
 
         // Metoda pro zjištění počtu prvků v bufferu
-        public int Count => items.Count;
+        public int Count => blocks.Count;
 
         public bool isFull()
         {
-            return items.Count == capacity;
+            return blocks.Count * Blok.GetSize() >= capacity;  // Upraveno dle velikosti bloku definované ve třídě Blok
+        }
+
+        public bool IsReady()
+        {
+            return blocks.Count > 0;
         }
 
         public byte[] ConvertListToArray()
         {
             List<byte> result = new List<byte>();
 
-            foreach (Blok byteArray in items)
+            foreach (Blok byteArray in blocks)
             {
                 result.AddRange(byteArray.ConvertListToArray());
             }
@@ -58,7 +68,7 @@ namespace SemC
 
         public string ToString()
         {
-            return identifire;
+            return $"Buffer {identifire}: {blocks.Count} blocks";
         }
 
     }

@@ -12,26 +12,24 @@ namespace SemC
     {
         static async Task Main(string[] args)
         {
-            int bufferSize = 1_000_000;
+            int bufferSize = 1_000;
             int dataSize = 1_000_000;
-            int experiment_count = 3;
+
             string filePath = "heapfile.bin";
             var heapFile = new HeapFile(filePath, bufferSize, dataSize, new ByteDataGenerator());
 
-            for (int i = 0; i < experiment_count; i++)
-            {
-                Console.WriteLine("");
+            Console.WriteLine("");
 
-                Console.WriteLine("Spouštění s jedním bufferem:");
-                await heapFile.WriteRecordsAsync(1);  // Write records to the file with single buffer
-                await heapFile.ReadRecordsAsync(1);   // Read records from the file with single buffer
+            Console.WriteLine("Spouštění s jedním bufferem:");
+            await heapFile.WriteRecordsAsync(1);  // Write records to the file with single buffer
+            await heapFile.ReadRecordsAsync(1);   // Read records from the file with single buffer
 
-                heapFile = new HeapFile(filePath, bufferSize, dataSize, new ByteDataGenerator());
+            heapFile = new HeapFile(filePath, bufferSize, dataSize, new ByteDataGenerator());
 
-                Console.WriteLine("\nSpouštění se dvěma buffery:");
-                await heapFile.WriteRecordsAsync(2);  // Write records to the file with dual buffers
-                await heapFile.ReadRecordsAsync(2);
-            }
+            Console.WriteLine("\nSpouštění se dvěma buffery:");
+            await heapFile.WriteRecordsAsync(2);  // Write records to the file with dual buffers
+            await heapFile.ReadRecordsAsync(2);
+            
 
            
         }

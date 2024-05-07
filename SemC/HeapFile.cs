@@ -26,6 +26,7 @@ namespace SemC
 
         public async Task WriteRecordsAsync(int bufferCount)
         {
+            int currentRecord = 0;
             Queue<Buffer> buffers = new Queue<Buffer>();
             for (int i = 0; i < bufferCount; i++)
             {
@@ -35,34 +36,45 @@ namespace SemC
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            for (int i = 0; i < totalRecords; i++)
+            Buffer currentBuffer = buffers.Dequeue();
+
+            while (currentRecord < totalRecords)
             {
-                Buffer currentBuffer = buffers.Dequeue();
-                buffers.Enqueue(currentBuffer);
-
-                while (!currentBuffer.isFull())
+                if (currentBuffer.isFull())
                 {
-                    Blok blok = new Blok(i);
-
-                    for (int j = 0; j < blok.GetSize(); j++)
-                    {
-                        blok.Add(generator.Next());
-
-                    }
-                    currentBuffer.Add(blok);
+                    await Write(currentBuffer);
+                    buffers.Enqueue(currentBuffer); // Vracíme buffer do fronty po zápisu
+                    currentBuffer = buffers.Dequeue(); // Získáme nový buffer na práci
+                    currentBuffer.Clear(); // Zajistíme, že buffer je prázdný
                 }
 
-                Console.WriteLine(currentBuffer.ToString());
+                Blok blok = new Blok(currentRecord);
+                for (int j = 0; j < Blok.GetSize(); j++)
+                {
+                    blok.Add(generator.Next());
+                    currentRecord++;
+                }
+                currentBuffer.Add(blok);
+            }
 
+            // Zajištění, že poslední buffer je také zapsán
+            if (!currentBuffer.isEmpty())
+            {
                 await Write(currentBuffer);
+                currentBuffer.Clear();
             }
 
             stopwatch.Stop();
             Console.WriteLine($"Zápis trvání: {stopwatch.ElapsedMilliseconds} ms");
 
+            // Flushing buffers if necessary (should be empty if logic is correct)
             foreach (var buffer in buffers)
             {
-                await FlushBufferAsync(buffer);
+                if (!buffer.isEmpty())
+                {
+                    await Write(buffer);
+                    buffer.Clear();
+                }
             }
         }
 
@@ -75,19 +87,8 @@ namespace SemC
             currentBuffer.Clear();
         }
 
-        private async Task FlushBufferAsync(Buffer buffer)
-        {
-            if (buffer.Count > 0)
-            {
-                buffer.Clear();
-            }
-        }
-
         public async Task ReadRecordsAsync(int bufferCount)
         {
-            using var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize, true);
-
-
             Queue<Buffer> buffers = new Queue<Buffer>();
             for (int i = 0; i < bufferCount; i++)
             {
@@ -97,24 +98,57 @@ namespace SemC
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            int bytesRead, totalReadSize = 0;
-            byte[] byteData = new byte[bufferSize];
+            using var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize, true);
+            byte[] data = new byte[Blok.GetSize()];
+            int bytesRead;
+            int recordId = 0;
 
-            while ((bytesRead = await fs.ReadAsync(byteData, 0, bufferSize)) > 0)
+            while ((bytesRead = await fs.ReadAsync(data, 0, data.Length)) > 0)
             {
                 Buffer currentBuffer = buffers.Dequeue();
+
+                Blok blok = new Blok(recordId++);
+                blok.Add(data.ToArray());
+
+                currentBuffer.Add(blok);
+
                 buffers.Enqueue(currentBuffer);
-                currentBuffer.Clear();
 
-                currentBuffer.AddRange(byteData.Take(bytesRead).ToArray());
+                if (buffers.Peek().IsReady())  
+                {
+                    Buffer readyBuffer = buffers.Dequeue(); 
 
-                totalReadSize += bytesRead;
+
+                    byte[] dataToProcess = readyBuffer.ConvertListToArray(); 
+
+                    ProcessData(dataToProcess); 
+
+                    readyBuffer.Clear();
+
+                    buffers.Enqueue(readyBuffer);
+                }
             }
 
             stopwatch.Stop();
-            Console.WriteLine($"Načtení trvání: {stopwatch.ElapsedMilliseconds} ms");
+            Console.WriteLine($"Čtení trvání: {stopwatch.ElapsedMilliseconds} ms");
+
+            foreach (var buffer in buffers)
+            {
+                if (buffer.IsReady())
+                {
+
+                    buffer.Clear();
+                }
+            }
+
         }
 
-        
+        private void ProcessData(byte[] data)
+        {
+            var dataString = BitConverter.ToString(data);
+            Console.WriteLine($"Data: {dataString}");
+        }
+
+
     }
 }
